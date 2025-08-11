@@ -102,19 +102,19 @@
 
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="javascript:void()"
+                                            <a href="javascript:void(0)"
                                                class="social-list-item bg-primary text-white border-primary">
                                                 <i class="mdi mdi-facebook"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="javascript:void()"
+                                            <a href="javascript:void(0)"
                                                class="social-list-item bg-info text-white border-info">
                                                 <i class="mdi mdi-twitter"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="javascript:void()"
+                                            <a href="javascript:void(0)"
                                                class="social-list-item bg-danger text-white border-danger">
                                                 <i class="mdi mdi-google"></i>
                                             </a>
@@ -123,7 +123,7 @@
                                 </div>
 
                                 <div class="mt-5 text-center">
-                                    <p class="text-muted mb-0">Don't have an account ? <a href="auth-register.html"
+                                    <p class="text-muted mb-0">Don't have an account ? <a href="{{ route('client.register') }}"
                                                                                           class="text-primary fw-semibold"> Signup now </a> </p>
                                 </div>
                             </div>

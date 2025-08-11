@@ -56,17 +56,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-md-6">
-                                        <div class="form-group mb-3">
-                                            <label for="example-text-input" class="form-label">City Name</label>
-                                            <select name="city_id"  class="form-select">
-                                                <option selected="" disabled="">Select</option>
-                                                @foreach($city as $cit)
-                                                    <option value="{{$cit->id}}" {{ $cit->id == $product->city_id ? 'selected' : '' }}>{{$cit->city_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+
                                     <div class="col-xl-3 col-md-6">
                                         <div class="form-group mb-3">
                                             <label for="example-text-input" class="form-label">Restaurant Name</label>

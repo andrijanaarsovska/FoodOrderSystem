@@ -1,5 +1,5 @@
 /*
-Template Name: Osahan Eat - Online Food Ordering Website HTML Template
+Template Name: Grab A Bite - Online Food Ordering Website HTML Template
 Author: Askbootstrap
 Author URI: https://themeforest.net/user/askbootstrap
 Version: 1.0
@@ -65,6 +65,7 @@ img{
    transform: translateY(0px);
    transition:.5s ease all;
 }
+
 .osahan-nav {
     background: #fff none repeat scroll 0 0 !important;
     padding: 0;
@@ -72,6 +73,7 @@ img{
 }
 .osahan-nav .nav-link {
     font-weight: 600;
+    font-size: 14px;
     padding: 28px 0px !important;
     margin: 0 0 0 31px;
 }
@@ -214,6 +216,7 @@ img{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    height: 650px;
 }
 .overlay {
     background: #000;
@@ -647,16 +650,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd646e', end
     object-fit: cover;
 }
 .restaurant-detailed-header {
+    position: absolute;
     bottom: 0;
     left: 0;
-    padding: 65px 0 17px;
-    position: absolute;
     right: 0;
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.83) 100%);
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.83) 100%);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.83) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#d4000000', GradientType=0);
+    padding: 65px 0 17px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.83) 100%
+    );
 }
+
 .homepage-great-deals-carousel .item img {
     border-radius: 2px;
 }
@@ -668,12 +673,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd646e', end
     position: relative;
 }
 .red-generator-bg {
-    background: #ff3371;
-    background: -moz-linear-gradient(-45deg, #ff3371 1%, #fe6753 100%);
-    background: -webkit-linear-gradient(-45deg, #ff3371 1%, #fe6753 100%);
-    background: linear-gradient(135deg, #ff3371 1%, #fe6753 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff3371', endColorstr='#fe6753', GradientType=1);
+    background: linear-gradient(
+        135deg,
+        #ff3371 1%,
+        #fe6753 100%
+    );
 }
+
 .border-btn {
     border: 1px solid #dee0e6;
     border-radius: 2px;
@@ -1341,7 +1347,7 @@ p{
     padding-bottom: 3rem !important;
 }
 .homepage-search-block {
-    padding: 3rem 0 !important;
+    padding: 10rem 0 !important;
 }
 .mobile-none{
     display: none;

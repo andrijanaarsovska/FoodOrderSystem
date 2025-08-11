@@ -58,17 +58,6 @@
                                     </div>
                                     <div class="col-xl-4 col-md-6">
                                         <div class="form-group mb-3">
-                                            <label for="example-text-input" class="form-label">City Name</label>
-                                            <select name="city_id"  class="form-select">
-                                                <option selected="" disabled="">Select</option>
-                                                @foreach($city as $cit)
-                                                    <option value="{{$cit->id}}" {{ $cit->id == $product->city_id ? 'selected' : '' }}>{{$cit->city_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="form-group mb-3">
                                             <label for="example-text-input" class="form-label">Product Name</label>
                                             <input class="form-control" name="name" type="text"
                                                    id="example-text-input" value="{{ $product->name }}">
@@ -86,14 +75,6 @@
                                             <label for="example-text-input" class="form-label">Discount Price</label>
                                             <input class="form-control" name="discount_price" type="text"
                                                    id="example-text-input" value="{{ $product->discount_price }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-md-6">
-                                        <div class="form-group mb-3">
-                                            <label for="example-text-input" class="form-label">Size</label>
-                                            <input class="form-control" name="size" type="text"
-                                                   id="example-text-input" value="{{ $product->size }}">
                                         </div>
                                     </div>
 

@@ -50,7 +50,7 @@
                                                     data-bs-toggle="modal" data-bs-target="#myEdit" id="{{ $item->id }}" onclick="cityEdit(this.id)">Edit
                                             </button>
                                             <a href="{{ route('delete.city', $item->id) }}"
-                                               class="btn btn-danger waves-effect waves-light">Delete</a></td>
+                                               class="btn btn-danger waves-effect waves-light" id="delete">Delete</a></td>
                                     </tr>
                                 @endforeach
 

@@ -12,7 +12,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <a href="{{ route('add.category') }}" class="btn btn-primary waves-effect waves-light">Add Category</a>
+                                <a href="{{ route('add.category') }}" class="btn btn-primary waves-effect waves-light">Add
+                                    Category</a>
                             </ol>
                         </div>
 
@@ -41,9 +42,16 @@
                                     <tr>
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $item->category_name }}</td>
-                                        <td><img src="{{asset($item->image)}}" alt="" style="width: 70px; height: 40px"></td>
-                                        <td><a href="{{ route('edit.category', $item->id) }}" class="btn btn-info waves-effect waves-light">Edit</a>
-                                            <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger waves-effect waves-light">Delete</a></td>
+                                        <td><img src="{{asset($item->image)}}" alt="" style="width: 70px; height: 40px">
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('edit.category', $item->id) }}"
+                                               class="btn btn-info waves-effect waves-light">Edit</a>
+                                            @if(Auth::guard('admin')->user()->can('category.delete'))
+
+                                                <a href="{{ route('delete.category', $item->id) }}"
+                                                   class="btn btn-danger waves-effect waves-light">Delete</a></td>
+                                        @endif
                                     </tr>
                                 @endforeach
 
@@ -57,7 +65,5 @@
 
         </div> <!-- container-fluid -->
     </div>
-
-
 
 @endsection

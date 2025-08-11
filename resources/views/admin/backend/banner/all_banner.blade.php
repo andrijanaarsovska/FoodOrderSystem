@@ -54,7 +54,7 @@
                                                     onclick="bannerEdit(this.id)">Edit
                                             </button>
                                             <a href="{{ route('delete.banner', $item->id) }}"
-                                               class="btn btn-danger waves-effect waves-light">Delete</a></td>
+                                               class="btn btn-danger waves-effect waves-light" id="delete">Delete</a></td>
                                     </tr>
                                 @endforeach
 

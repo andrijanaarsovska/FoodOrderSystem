@@ -1,9 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\ManageController;
+use App\Http\Controllers\Admin\ManageOrderController;
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Client\RestaurantController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\FilterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -33,6 +39,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
+    Route::controller(ManageOrderController::class)->group(function () {
+        Route::get('/user/order-list', 'UserOrderListManage')->name('user.order.list');
+        Route::get('/user/order-details/{id}', 'UserOrderDetailsManage')->name('user.order_details');
+        Route::get('/user/invoice-download/{id}', 'UserInvoiceDownload')->name('user.invoice.download');
+    });
 });
 
 require __DIR__ . '/auth.php';
@@ -89,7 +100,7 @@ Route::get('/client/logout', [ClientController::class, 'ClientLogout'])->name('c
 // all admin category  all.category
 Route::middleware('admin')->group(function () {
     Route::controller(AdminCategoryController::class)->group(function () {
-        Route::get('/all/category', 'AllCategory')->name('all.category');
+        Route::get('/all/category', 'AllCategory')->name('all.category')->middleware(['permission:category.all']);
         Route::get('/add/category', 'AddCategory')->name('add.category');
         Route::post('/category/store', 'StoreCategory')->name('category.store');
         Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
@@ -126,7 +137,66 @@ Route::middleware('admin')->group(function () {
         Route::post('/banner/store', 'StoreBanner')->name('banner.store');
         Route::post('/banner/update', 'UpdateBanner')->name('banner.update');
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
-       });
+    });
+
+    Route::controller(ManageOrderController::class)->group(function () {
+        Route::get('/pending-order', 'PendingOrderManage')->name('pending.order');
+        Route::get('/confirm-order', 'ConfirmOrderManage')->name('confirm.order');
+        Route::get('/processing-order', 'ProcessingOrderManage')->name('processing.order');
+        Route::get('/delivered-order', 'DeliveredOrderManage')->name('delivered.order');
+        Route::get('/admin/order-details/{id}', 'OrderDetails')->name('admin.order_details');
+    });
+
+    Route::controller(ManageOrderController::class)->group(function () {
+        Route::get('/pending-to-confirm/{id}', 'PendingToConfirmManage')->name('pending_to_confirm');
+        Route::get('/confirm-to-processing/{id}', 'ConfirmToProcessManage')->name('confirm_to_processing');
+        Route::get('/processing-to-deliver/{id}', 'ProcessToDeliverManage')->name('processing_to_deliver');
+    });
+
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/admin/all-reports', 'AdminAllReports')->name('admin.all.reports');
+        Route::post('/admin/search/by-date', 'AdminSearchByDate')->name('admin.search.date');
+        Route::post('/admin/search/by-month', 'AdminSearchByMonth')->name('admin.search.month');
+        Route::post('/admin/search/by-year', 'AdminSearchByYear')->name('admin.search.year');
+    });
+
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/all/permissions', 'AllPermissions')->name('admin.all.permissions');
+        Route::get('/add/permission', 'AddPermission')->name('add.permission');
+        Route::post('/permission/store', 'StorePermission')->name('permission.store');
+        Route::get('/permission/edit/{id}', 'EditPermission')->name('edit.permission');
+        Route::post('/permission/update', 'UpdatePermission')->name('permission.update');
+        Route::get('/permission/delete/{id}', 'DeletePermission')->name('delete.permission');
+    });
+
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/all/roles', 'AllRoles')->name('admin.all.roles');
+        Route::get('/add/role', 'AddRole')->name('add.role');
+        Route::post('/store/role', 'StoreRole')->name('role.store');
+        Route::get('/edit/role/{id}', 'EditRole')->name('edit.role');
+        Route::post('/role/update', 'UpdateRole')->name('role.update');
+        Route::get('/role/delete/{id}', 'DeleteRole')->name('delete.role');
+    });
+
+     Route::controller(RoleController::class)->group(function () {
+         Route::get('/add/role/permission', 'AddRolesPermission')->name('admin.add.roles.permission');
+         Route::post('/role/permission/store', 'RolePermissionStore')->name('role.permission.store');
+         Route::get('/all/roles/permission', 'AllRolesPermission')->name('admin.all.roles.permission');
+         Route::get('/admin/edit/roles/{id}', 'AdminEditRoles')->name('admin.edit.roles');
+         Route::post('/admin/roles/update/{id}', 'AdminRolesUpdate')->name('admin.roles.update');
+         Route::get('/admin/delete/roles/{id}', 'AdminDeleteRoles')->name('admin.delete.roles');
+   });
+
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/admin/list', 'AllAdmin')->name('all.admin');
+        Route::get('/add/admin', 'AddAdmin')->name('add.admin');
+        Route::post('/admin/store', 'StoreAdmin')->name('admin.store');
+        Route::get('/admin/edit/{id}', 'EditAdmin')->name('edit.admin');
+        Route::post('/admin/update/{id}', 'UpdateAdmin')->name('admin.update');
+        Route::get('/admin/delete/{id}', 'DeleteAdmin')->name('delete.admin');
+   });
+
+
 });
 
 // for restaurant
@@ -158,6 +228,20 @@ Route::middleware(['client', 'status'])->group(function () {
         Route::get('/delete/gallery/{id}', 'DeleteGallery')->name('delete.gallery');
 
     });
+
+    Route::controller(ManageOrderController::class)->group(function () {
+        Route::get('/all/orders', 'AllClientOrdersManage')->name('all.client.orders');
+        Route::get('/restaurant/order-details/{id}', 'ClientOrderDetailsManage')->name('client.order_details');
+    });
+
+
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/client/all-reports', 'ClientAllReports')->name('client.all.reports');
+        Route::post('/client/search/by-date', 'ClientSearchByDate')->name('client.search.date');
+        Route::post('/client/search/by-month', 'ClientSearchByMonth')->name('client.search.month');
+        Route::post('/client/search/by-year', 'ClientSearchByYear')->name('client.search.year');
+
+    });
 });
 
 Route::get('/changeStatus', [RestaurantController::class, 'ChangeStatus']);
@@ -165,3 +249,25 @@ Route::get('/changeStatus', [RestaurantController::class, 'ChangeStatus']);
 Route::controller(HomeController::class)->group(function () {
     Route::get('/restaurant/details/{id}', 'RestaurantDetails')->name('restaurant.details');
 });
+
+
+Route::controller(CartController::class)->group(function () {
+    Route::get('/add_to_cart/{id}', 'AddToCart')->name('add_to_cart');
+    Route::post('/cart/update-quantity', 'UpdateCartQuantity')->name('cart.updateQuantity');
+    Route::post('/cart/remove-item', 'RemoveCartItem')->name('cart.remove');
+    Route::get('/checkout', 'ShopCheckout')->name('checkout');
+});
+
+
+Route::controller(OrderController::class)->group(function () {
+    Route::post('/cash_order', 'CashOrder')->name('cash_order');
+    Route::post('/mark-notification-as-read/{notificationId}', 'MarkAsReadNotification');
+
+});
+
+
+Route::controller(FilterController::class)->group(function () {
+    Route::get('/restaurants', 'ListRestaurants')->name('list.restaurants');
+    Route::get('/filter/products', 'FilterProducts')->name('filter.products');
+});
+

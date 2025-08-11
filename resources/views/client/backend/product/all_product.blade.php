@@ -50,7 +50,7 @@
                                         <td>{{ $key+1 }}</td>
                                         <td><img src="{{asset($item->image)}}" alt="" style="width: 70px; height: 40px"></td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item['menu']['menu_name'] }}</td>
+                                        <td>{{ $item['menu']['menu_name'] ?? 'default' }}</td>
                                         <td>{{ $item->qty }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>

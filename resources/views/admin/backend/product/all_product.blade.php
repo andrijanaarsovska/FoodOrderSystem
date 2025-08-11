@@ -1,8 +1,8 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-
     <div class="page-content">
         <div class="container-fluid">
 
@@ -70,7 +70,7 @@
                                                 <span class="text-danger"><b>InActive</b></span>
                                         @endif
                                         <td><a href="{{ route('admin.edit.product', $item->id) }}" class="btn btn-info waves-effect waves-light">Edit</a>
-                                            <a href="{{ route('admin.delete.product', $item->id) }}" class="btn btn-danger waves-effect waves-light">Delete</a>
+                                            <a href="{{ route('admin.delete.product', $item->id) }}" class="btn btn-danger waves-effect waves-light" id="delete">Delete</a>
                                             <input data-id="{{ $item->id }}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger"  data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $item->status ? 'checked' : '' }}>
 
 

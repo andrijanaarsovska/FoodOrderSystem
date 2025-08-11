@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Askbootstrap">
     <meta name="author" content="Askbootstrap">
-    <title>User Dashboard- Online Food Ordering Website</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>User Dashboard - Online Food Ordering Website</title>
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="{{ asset('frontend/img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('frontend/img/logo-pic.png') }}">
     <!-- Bootstrap core CSS-->
     <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome-->
@@ -23,6 +24,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.theme.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -34,23 +38,29 @@
 
 
 
+
 <!-- jQuery -->
 <script src="{{ asset('frontend/vendor/jquery/jquery-3.3.1.slim.min.js') }}"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- Select2 JavaScript-->
 <script src="{{ asset('frontend/vendor/select2/js/select2.min.js') }}"></script>
-
 <script src="{{ asset('frontend/vendor/owl-carousel/owl.carousel.js') }}"></script>
-
-
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('frontend/js/custom.js') }}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="https://js.stripe.com/v3/"></script>
 
 <script>
     @if(Session::has('message'))
     var type = "{{ Session::get('alert-type','info') }}"
-    switch(type){
+    switch (type) {
         case 'info':
             toastr.info(" {{ Session::get('message') }} ");
             break;
@@ -69,5 +79,15 @@
     }
     @endif
 </script>
+
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+
 </body>
 </html>
