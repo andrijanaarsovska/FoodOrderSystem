@@ -11,8 +11,7 @@
                 <p>Matched</p>
                 <div class="list-card-body">
                     <h6 class="mb-1"><a href="{{ route('restaurant.details',$product->client_id) }}" class="text-black"> {{ $product->name}}</a></h6>
-
-                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> 20–25 min</span> <span class="float-right text-black-50"> {{ $product->price }} mkd</span></p>
+<span class="float-right text-black-50 pb-2"> {{ $product->price }} мкд</span>
                 </div>
             </div>
         </div>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('role')->default('client');
             $table->string('status')->default('1');
+            $table->string('delivery_time')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

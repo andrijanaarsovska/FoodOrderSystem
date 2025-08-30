@@ -1,6 +1,9 @@
 @extends('frontend.dashboard.dashboard')
 @section('dashboard')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
     @php
         $products = \App\Models\Product::where('client_id', $restaurant->id)->limit(3)->get();
@@ -28,9 +31,15 @@
 
                         </div>
                     </div>
+
+                    @php
+                        $start = rand(20, 110);
+                        $end = min($start + rand(15, 30), 160);
+                    @endphp
+
                     <div class="col-md-4">
                         <div class="restaurant-detailed-header-right text-right">
-                            <button class="btn btn-success" type="button"><i class="icofont-clock-time"></i> 25–35 min
+                            <button class="btn btn-success" type="button"><i class="icofont-clock-time"></i> {{ $start }} - {{ $end }} min
                             </button>
 {{--                            <h6 class="text-white mb-0 restaurant-detailed-ratings"><span--}}
 {{--                                    class="generator-bg rounded text-white"><i class="icofont-star"></i> 3.1</span> 23--}}
@@ -86,8 +95,7 @@
                                 <div id="#menu" class="bg-white rounded shadow-sm p-4 mb-4 explore-outlets">
 
                                     <h6 class="mb-3">Most Popular</h6>
-                                    <div
-                                        class="owl-carousel owl-theme owl-carousel-five offers-interested-carousel mb-3">
+                                    <div class="owl-carousel owl-theme owl-carousel-five offers-interested-carousel mb-3">
 
                                         @foreach( $popular as $item)
                                             <div class="item">
@@ -130,8 +138,8 @@
                                             <div
                                                 class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                                                 <div class="list-card-image">
-                                                   <div class="member-plan position-absolute"><span
-                                                            class="badge badge-dark">Promoted</span></div>
+{{--                                                   <div class="member-plan position-absolute"><span--}}
+{{--                                                            class="badge badge-dark">Promoted</span></div>--}}
                                                     <a href="#">
                                                         <img src="{{ asset($bestseller->image) }}"
                                                              class="img-fluid item-img">
@@ -235,7 +243,7 @@
                                         <div class="mapouter">
                                             <div class="gmap_canvas">
                                                 <iframe width="300" height="170" id="gmap_canvas"
-                                                        src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=9&ie=UTF8&iwloc=&output=embed"
+                                                        src="https://maps.google.com/maps?q={{ urlencode($restaurant->address) }}&t=&z=9&ie=UTF8&iwloc=&output=embed"
                                                         frameborder="0" scrolling="no" marginheight="0"
                                                         marginwidth="0"></iframe>
                                             </div>
@@ -249,9 +257,15 @@
                                     </p>
                                     <p class="mb-2 text-black"><i
                                             class="icofont-email text-primary mr-2"></i> {{ $restaurant->email}}</p>
+                                    @if($restaurant->shop_info)
+                                        <p class="mb-2 text-black"><i
+                                                class="icofont-info text-primary mr-2"></i> {{ $restaurant->shop_info}}
+                                        </p>
+                                    @endif
+
                                     <p class="mb-2 text-black"><i
-                                            class="icofont-clock-time text-primary mr-2"></i>{{ $restaurant->shop_info}}
-                                        <span class="badge badge-success"> OPEN NOW </span>
+                                            class="icofont-clock-time text-primary mr-2">  {{ $restaurant->working_hours }}</i>
+                                        <span class="badge badge-success"> OPEN EVERY DAY </span>
                                     </p>
                                     <hr class="clearfix">
 
@@ -411,6 +425,19 @@
 
 
         })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel-five').owlCarousel({
+                loop:true,      // set to true if you want infinite scrolling
+                margin:10,
+                nav:true,
+                dots:true,
+                items:5,         // number of items you want visible
+                autoplay:true   // change to true if you want auto sliding
+            });
+        });
     </script>
 
 

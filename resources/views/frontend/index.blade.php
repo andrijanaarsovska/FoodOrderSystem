@@ -26,6 +26,10 @@
 
 
 
+                @php
+                    $start = rand(20, 110);
+                    $end = min($start + rand(15, 30), 160);
+                @endphp
             <div class="col-md-3 d-flex">
                     <div class="item pb-3">
                         <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
@@ -37,7 +41,7 @@
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
                                     <h6 class="mb-1 mb-3"><a href="{{ route('restaurant.details', $client->id) }}" class="text-black">{{ $client->name }}</a></h6>
-                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> 20–25 min</span> </p>
+                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> {{ $start }} - {{ $end }} min</span> </p>
                                 </div>
                             </div>
                         </div>

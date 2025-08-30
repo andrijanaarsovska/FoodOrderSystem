@@ -161,17 +161,13 @@
                                         <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                                     </div>
                                     <!-- end carouselIndicators -->
+
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
                                             <div class="testi-contain text-white">
                                                 <i class="bx bxs-quote-alt-left text-success display-6"></i>
 
-                                                <h4 class="mt-4 fw-medium lh-base text-white">“I feel confident
-                                                    imposing change
-                                                    on myself. It's a lot more progressing fun than looking back.
-                                                    That's why
-                                                    I ultricies enim
-                                                    at malesuada nibh diam on tortor neaded to throw curve balls.”
+                                                <h4 class="mt-4 fw-medium lh-base text-white">“Welcome to our platform! By registering your restaurant, you’re joining a growing community of food lovers who are always looking for new places to try. Your dishes will soon be visible to thousands of hungry customers in just a few clicks.”
                                                 </h4>
                                                 <div class="mt-4 pt-3 pb-5">
                                                     <div class="d-flex align-items-start">
@@ -192,12 +188,7 @@
                                             <div class="testi-contain text-white">
                                                 <i class="bx bxs-quote-alt-left text-success display-6"></i>
 
-                                                <h4 class="mt-4 fw-medium lh-base text-white">“Our task must be to
-                                                    free ourselves by widening our circle of compassion to embrace
-                                                    all living
-                                                    creatures and
-                                                    the whole of quis consectetur nunc sit amet semper justo. nature
-                                                    and its beauty.”</h4>
+                                                <h4 class="mt-4 fw-medium lh-base text-white">“Adding your restaurant is simple and takes only a few minutes. Just fill in your basic details, upload your menu, and set your delivery time. Once approved, your restaurant will be live and ready to receive orders instantly.”</h4>
                                                 <div class="mt-4 pt-3 pb-5">
                                                     <div class="d-flex align-items-start">
                                                         <div class="flex-shrink-0">
@@ -217,12 +208,7 @@
                                             <div class="testi-contain text-white">
                                                 <i class="bx bxs-quote-alt-left text-success display-6"></i>
 
-                                                <h4 class="mt-4 fw-medium lh-base text-white">“I've learned that
-                                                    people will forget what you said, people will forget what you
-                                                    did,
-                                                    but people will never forget
-                                                    how donec in efficitur lectus, nec lobortis metus you made them
-                                                    feel.”</h4>
+                                                <h4 class="mt-4 fw-medium lh-base text-white">“Boost your visibility, attract new customers, and grow your business with ease. Our platform helps you reach more people and makes ordering food fast and convenient — so you can focus on cooking while we take care of the rest.”</h4>
                                                 <div class="mt-4 pt-3 pb-5">
                                                     <div class="d-flex align-items-start">
                                                         <img src="{{ asset('backend/assets/images/users/avatar-3.jpg') }}"
@@ -237,6 +223,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <!-- end carousel-inner -->
                                 </div>
                                 <!-- end review carousel -->

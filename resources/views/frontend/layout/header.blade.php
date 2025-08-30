@@ -91,7 +91,7 @@
                                         $total += $details['price'] * $details['quantity'];
                                     @endphp
 
-                            <p class="mb-2"><i class="icofont-ui-press text-danger food-item"></i>{{ $details['name'] }} x {{$details['quantity']}}<span class="float-right text-secondary">${{$details['price'] * $details['quantity']}}</span></p>
+                            <p class="mb-2"><i class="icofont-ui-press text-danger food-item"></i>{{ $details['name'] }} x {{$details['quantity']}}<span class="float-right text-secondary"> {{$details['price'] * $details['quantity']}} мкд</span></p>
 
 
                                 @endforeach

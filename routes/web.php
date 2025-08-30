@@ -262,6 +262,7 @@ Route::controller(CartController::class)->group(function () {
 Route::controller(OrderController::class)->group(function () {
     Route::post('/cash_order', 'CashOrder')->name('cash_order');
     Route::post('/mark-notification-as-read/{notificationId}', 'MarkAsReadNotification');
+    Route::post('/mark-notification-as-read-client/{notificationId}', 'MarkAsReadNotificationClient');
 
 });
 
