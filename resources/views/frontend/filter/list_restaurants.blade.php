@@ -59,7 +59,7 @@
 
 
                         @php
-                            $cities = App\Models\City::orderBy('id','desc')->limit(10)->get();
+                        $cities = App\Models\City::orderBy('id', 'desc')->limit(10)->get();
                         @endphp
                         <div class="filters-body">
                             <div id="accordion">
@@ -202,7 +202,13 @@
                     method: 'GET',
                     data: filters,
                     success: function(response){
-                        $('#product-list').html(response)
+                        $('#product-list').html(response);
+
+                        let noFiltersSelected = document.querySelectorAll('.filter-checkbox:checked').length === 0;
+
+                        if (noFiltersSelected) {
+                            document.querySelectorAll('.matched-text').forEach(el => el.remove());
+                        }
                     }
                 });
 

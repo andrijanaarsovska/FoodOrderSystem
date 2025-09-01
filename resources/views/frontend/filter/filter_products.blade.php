@@ -8,7 +8,7 @@
                 </a>
             </div>
             <div class="p-3 position-relative">
-                <p>Matched</p>
+                    <p class="matched-text">Matched</p>
                 <div class="list-card-body">
                     <h6 class="mb-1"><a href="{{ route('restaurant.details',$product->client_id) }}" class="text-black"> {{ $product->name}}</a></h6>
 <span class="float-right text-black-50 pb-2"> {{ $product->price }} мкд</span>
